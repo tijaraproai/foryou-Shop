@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم - ForYou Shop</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{background:#0f172a;color:white;font-family:Arial,sans-serif;margin:0;padding:0;}
+header{padding:20px;text-align:center;font-size:28px;font-weight:bold;background:#020617;color:#22c55e;}
+.dashboard{max-width:1000px;margin:50px auto;padding:20px;}
+.filter{margin-bottom:20px;}
+.filter select{padding:10px;margin-right:10px;border-radius:8px;border:none;}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.product{background:#111827;border-radius:12px;padding:20px;text-align:center;position:relative;}
+.product img{width:100%;border-radius:10px;margin-top:5px;}
+.actions{display:flex;justify-content:center;gap:5px;margin-top:10px;}
+.actions button{padding:5px 10px;font-size:12px;border:none;border-radius:5px;cursor:pointer;}
+.actions .edit{background:#facc15;color:black;}
+.actions .delete{background:#ef4444;color:white;}
+.stats{margin-top:30px;padding:20px;background:#111827;border-radius:12px;}
+</style>
+</head>
+<body>
+
+<header>لوحة التحكم - ForYou Shop</header>
+
+<div class="dashboard">
+  <div class="filter">
+    <label>اختر المنطقة: </label>
+    <select id="regionFilter">
+      <option value="">كل المناطق</option>
+      <option value="شمال">شمال</option>
+      <option value="جنوب">جنوب</option>
+      <option value="شرق">شرق</option>
+      <option value="غرب">غرب</option>
+    </select>
+
+    <label>اختر المقاطعة: </label>
+    <select id="districtFilter">
+      <option value="">كل المقاطعات</option>
+      <option value="أ">أ</option>
+      <option value="ب">ب</option>
+      <option value="ج">ج</option>
+      <option value="د">د</option>
+    </select>
+
+    <button id="applyFilter">تطبيق الفلتر</button>
+  </div>
+
+  <section class="products">
+    <!-- سيتم عرض المنتجات هنا -->
+  </section>
+
+  <div class="stats">
+    <h3>إحصائيات المنتجات</h3>
+    <p id="totalProducts">عدد المنتجات: 0</p>
+    <p id="highestPrice">أعلى سعر: 0$</p>
+    <p id="lowestPrice">أقل سعر: 0$</p>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+function updateStats(filteredProducts){
+    if(filteredProducts.length === 0){
+        document.getElementById("totalProducts").innerText = "عدد المنتجات: 0";
+        document.getElementById("highestPrice").innerText = "أعلى سعر: 0$";
+        document.getElementById("lowestPrice").innerText = "أقل سعر: 0$";
+        return;
+    }
+    let prices = filteredProducts.map(p=>Number(p.price));
+    document.getElementById("totalProducts").innerText = `عدد المنتجات: ${filteredProducts.length}`;
+    document.getElementById("highestPrice").innerText = `أعلى سعر: ${Math.max(...prices)}$`;
+    document.getElementById("lowestPrice").innerText = `أقل سعر: ${Math.min(...prices)}$`;
+}
+
+function displayDashboardProducts(regionFilter=null, districtFilter=null){
+    let container = document.querySelector(".products");
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    let filtered = products.filter(p=>{
+        if(regionFilter && p.region !== regionFilter) return false;
+        if(districtFilter && p.district !== districtFilter) return false;
+        return true;
+    });
+    updateStats(filtered);
+    container.innerHTML = "";
+    filtered.forEach((p,index)=>{
+        container.innerHTML += `
+        <div class="product">
+            <img src="${p.images[0] || ''}">
+            <h3>${p.title}</h3>
+            <p class="price">${p.price}$</p>
+            <p>${p.description}</p>
+            <p>المنطقة: ${p.region} | المقاطعة: ${p.district}</p>
+            <div class="actions">
+                <button class="edit" onclick="editProduct(${index})">تعديل</button>
+                <button class="delete" onclick="deleteProduct(${index})">حذف</button>
+            </div>
+        </div>
+        `;
+    });
+}
+
+document.getElementById("applyFilter").addEventListener("click", ()=>{
+    let region = document.getElementById("regionFilter").value;
+    let district = document.getElementById("districtFilter").value;
+    displayDashboardProducts(region, district);
+});
+
+// عرض كل المنتجات عند فتح الصفحة
+displayDashboardProducts();
+</script>
+
+</body>
+</html>
