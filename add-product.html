@@ -5,25 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>أضف منتج - ForYou</title>
 <link rel="stylesheet" href="style.css">
-<style>
-body{background:#0f172a;color:white;font-family:Arial,sans-serif;margin:0;padding:0;}
-header{padding:20px;text-align:center;font-size:28px;font-weight:bold;background:#020617;color:#22c55e;}
-form{max-width:500px;margin:50px auto;background:#111827;padding:30px;border-radius:12px;}
-input,textarea{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:none;}
-button{padding:15px 30px;background:#22c55e;border:none;color:white;font-size:18px;border-radius:10px;cursor:pointer;}
-button:hover{background:#16a34a;}
-</style>
 </head>
 <body>
 
 <header>أضف منتجك</header>
 
 <form id="productForm">
-<input type="text" id="title" placeholder="اسم المنتج" required>
-<input type="number" id="price" placeholder="السعر $" required>
-<input type="url" id="image" placeholder="رابط الصورة" required>
-<textarea id="description" placeholder="وصف المنتج"></textarea>
-<button type="submit">رفع المنتج</button>
+  <input type="text" id="title" placeholder="اسم المنتج" required>
+  <input type="number" id="price" placeholder="السعر $" required>
+  <textarea id="description" placeholder="وصف المنتج"></textarea>
+  <label>اختر المنطقة:</label>
+  <select id="region" required>
+    <option value="شمال">شمال</option>
+    <option value="جنوب">جنوب</option>
+    <option value="شرق">شرق</option>
+    <option value="غرب">غرب</option>
+  </select>
+  <label>اختر المقاطعة:</label>
+  <select id="district" required>
+    <option value="أ">أ</option>
+    <option value="ب">ب</option>
+    <option value="ج">ج</option>
+    <option value="د">د</option>
+  </select>
+  <label>رفع صور المنتج:</label>
+  <input type="file" id="images" multiple accept="image/*">
+  <button type="submit">رفع المنتج</button>
 </form>
 
 <script src="js/script.js"></script>
