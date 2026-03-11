@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المنتجات - ForYou</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.products{
+padding:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.product{
+background:#111827;
+border-radius:12px;
+padding:20px;
+text-align:center;
+}
+
+.product img{
+width:100%;
+border-radius:10px;
+}
+
+.price{
+color:#22c55e;
+font-size:20px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<div class="logo">ForYou</div>
+</header>
+
+<h1 style="text-align:center;margin-top:40px;">المنتجات 🛍️</h1>
+
+<section class="products">
+
+<div class="product">
+<img src="https://picsum.photos/300/200">
+<h3>منتج تجريبي</h3>
+<p class="price">20$</p>
+</div>
+
+<div class="product">
+<img src="https://picsum.photos/300/201">
+<h3>منتج رائع</h3>
+<p class="price">35$</p>
+</div>
+
+<div class="product">
+<img src="https://picsum.photos/300/202">
+<h3>منتج جديد</h3>
+<p class="price">15$</p>
+</div>
+
+</section>
+
+</body>
+</html>
