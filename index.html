@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ForYou Shop - النسخة التجريبية</title>
+<title>ForYou Shop</title>
 <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing:border-box; font-family:'Almarai',sans-serif; margin:0; padding:0; }
@@ -12,13 +12,10 @@
   header h1 { font-size:2rem; }
   main { padding:20px; max-width:1200px; margin:0 auto; }
   .products { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
-  .product { background:white; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); padding:15px; transition: transform 0.2s; }
+  .product { background:white; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); padding:15px; transition: transform 0.2s; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center; }
   .product:hover { transform: translateY(-5px); }
-  .product img { width:100%; border-radius:8px; margin-bottom:10px; }
-  .product h3 { font-size:1.1rem; margin-bottom:5px; }
-  .product p { font-size:0.95rem; margin-bottom:10px; }
-  .product button { background:#00bfa5; color:white; border:none; padding:10px; border-radius:8px; width:100%; cursor:pointer; font-size:1rem; }
-  .product button:hover { background:#009e88; }
+  .product img { width:100%; border-radius:8px; margin-bottom:10px; display:none; }
+  .product h3, .product p, .product button { display:none; }
   footer { text-align:center; padding:20px; margin-top:40px; color:#777; }
   @media (max-width:600px) { .products { grid-template-columns:1fr; } }
 </style>
@@ -27,45 +24,29 @@
 
 <header>
   <h1>ForYou Shop 🚀</h1>
-  <p>نسخة تجريبية لمتجر التسويق بالعمولة</p>
+  <p>النسخة الأساسية لمتجر البائعين</p>
 </header>
 
 <main>
   <div class="products" id="products-container">
-    <!-- المنتجات ستظهر هنا تلقائيًا -->
+    <!-- سيتم إضافة المنتجات من لوحة التحكم لاحقًا -->
   </div>
 </main>
 
 <footer>
-  &copy; 2026 ForYou Shop - النسخة التجريبية
+  &copy; 2026 ForYou Shop
 </footer>
 
 <script>
-  // ⚡ المنتجات التجريبية مع روابط Affiliate افتراضية
-  const products = [
-    { name:"سماعات لاسلكية", price:"$49.99", img:"https://via.placeholder.com/300x200?text=سماعات", link:"https://www.aliexpress.com" },
-    { name:"ساعة ذكية", price:"$79.99", img:"https://via.placeholder.com/300x200?text=ساعة", link:"https://www.amazon.com" },
-    { name:"حقيبة ظهر رياضية", price:"$39.99", img:"https://via.placeholder.com/300x200?text=حقيبة", link:"https://www.aliexpress.com" },
-    { name:"نظارات شمسية", price:"$29.99", img:"https://via.placeholder.com/300x200?text=نظارات", link:"https://www.amazon.com" },
-    { name:"هاتف ذكي", price:"$399.99", img:"https://via.placeholder.com/300x200?text=هاتف", link:"https://www.aliexpress.com" },
-    { name:"كاميرا رقمية", price:"$249.99", img:"https://via.placeholder.com/300x200?text=كاميرا", link:"https://www.amazon.com" },
-    { name:"سكوتر كهربائي", price:"$199.99", img:"https://via.placeholder.com/300x200?text=سكوتر", link:"https://www.aliexpress.com" },
-    { name:"حذاء رياضي", price:"$59.99", img:"https://via.placeholder.com/300x200?text=حذاء", link:"https://www.amazon.com" }
-  ];
-
+  // حاليًا الشبكة فارغة، المنتجات ستضاف لاحقًا من لوحة التحكم
   const container = document.getElementById("products-container");
 
-  products.forEach(prod => {
-    const div = document.createElement("div");
-    div.className = "product";
-    div.innerHTML = `
-      <img src="${prod.img}" alt="${prod.name}">
-      <h3>${prod.name}</h3>
-      <p>السعر: ${prod.price}</p>
-      <button onclick="window.open('${prod.link}','_blank')">شراء الآن</button>
-    `;
-    container.appendChild(div);
-  });
+  // مثال لإضافة منتج لاحقًا:
+  // const prod = { name:"مثال منتج", price:"$99", img:"url" };
+  // const div = document.createElement("div");
+  // div.className = "product";
+  // div.innerHTML = `<h3>${prod.name}</h3><p>${prod.price}</p><img src="${prod.img}" alt="${prod.name}"><button>شراء الآن</button>`;
+  // container.appendChild(div);
 </script>
 
 </body>
